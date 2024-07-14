@@ -183,10 +183,4 @@ public abstract class BuildSrcExtension {
             }
         }
     }
-
-    // tasks.register('loaderInfoJar', Jar) {
-    //	from sourceSets.loaderInfo.output
-    //	destinationDirectory = new File(project.buildDir, "devlibs")
-    //	archiveClassifier = "loaderinfo"
-    //}
 }
