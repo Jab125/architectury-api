@@ -12,7 +12,15 @@ plugins {
     id "org.cadixdev.licenser" version "0.6.1"
     id "me.shedaniel.unified-publishing" version "0.1.+" apply false
     id "maven-publish"
+    id "build-src"
 }
+
+buildSrc {
+    module("core").dependsOn("annotations")
+    module("misc").dependsOn("core")
+}
+
+System.out.println(buildSrc.module("annotations").transitiveDependencies)
 
 architectury {
     minecraft = rootProject.minecraft_version
@@ -47,6 +55,7 @@ allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
     apply plugin: "org.cadixdev.licenser"
+    apply plugin: "build-src"
 
     ext {
         isSnapshot = System.getenv("PR_NUM") != null

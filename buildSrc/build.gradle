@@ -1,0 +1,23 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    maven {
+        url "https://maven.architectury.dev/"
+    }
+}
+
+gradlePlugin {
+    plugins {
+        myPlugins {
+            id = 'build-src'
+            implementationClass = 'dev.architectury.buildsrc.BuildSrcPlugin'
+        }
+    }
+}
+
+
+dependencies {
+    compileOnly "dev.architectury:architectury-loom:1.6-SNAPSHOT"
+}

@@ -29,7 +29,6 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modCompileOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
 
-    //Dependency dep = project(path: ":common", configuration: "namedElements")
     common(project(":common").sourceSets.misc.output)
     common(project(":common").sourceSets.core.output)
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
