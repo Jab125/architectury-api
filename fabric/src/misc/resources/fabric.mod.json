@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "architectury",
+  "id": "architectury-misc",
   "version": "${version}",
   "name": "Architectury",
-  "description": "A intermediary api aimed to ease developing multiplatform mods.",
+  "description": "Features that have not been sorted into a module yet",
   "authors": [
     "shedaniel"
   ],
@@ -15,8 +15,22 @@
   "license": "LGPL-3",
   "environment": "*",
   "mixins": [
+    "architectury-common.mixins.json",
+    "architectury.mixins.json"
   ],
   "entrypoints": {
+    "main": [
+      "dev.architectury.utils.fabric.GameInstanceImpl::init"
+    ],
+    "server": [
+      "dev.architectury.init.fabric.ArchitecturyServer::init"
+    ],
+    "client": [
+      "dev.architectury.init.fabric.ArchitecturyClient::init"
+    ],
+    "modmenu": [
+      "dev.architectury.compat.fabric.ModMenuCompatibility"
+    ]
   },
   "icon": "icon.png",
   "depends": {

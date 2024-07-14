@@ -1,5 +1,5 @@
 loom {
-    accessWidenerPath = file("src/main/resources/architectury.accessWidener")
+    accessWidenerPath = file("src/misc/resources/architectury.accessWidener")
 }
 
 //sourceSets {
@@ -203,4 +203,8 @@ publishing {
             }
         }
     }
+}
+
+for (final def e in project.configurations) {
+    System.out.println(e)
 }

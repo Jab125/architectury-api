@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "architectury",
   "version": "${version}",
-  "name": "Architectury",
-  "description": "A intermediary api aimed to ease developing multiplatform mods.",
+  "name": "Architectury Annotations",
+  "description": "Annotations provided by Architectury API",
   "authors": [
     "shedaniel"
   ],

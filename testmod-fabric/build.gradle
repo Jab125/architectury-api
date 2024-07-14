@@ -22,11 +22,20 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+repositories {
+    maven { url "https://maven.terraformersmc.com/releases/" }
+}
+
 dependencies {
+    modLocalRuntime("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
 
-    implementation project(path: ":fabric", configuration: "namedElements")
+    buildSrc.getModules().each {
+        implementation project(":fabric").sourceSets.maybeCreate(it.key).output
+        implementation project(":common").sourceSets.maybeCreate(it.key).output
+    }
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
 }

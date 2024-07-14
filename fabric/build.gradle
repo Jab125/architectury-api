@@ -39,7 +39,7 @@ dependencies {
 buildSrc.platformSetup("fabric")
 buildSrc.setupTasks()
 
-processResources {
+tasks.withType(ProcessResources).configureEach {
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }

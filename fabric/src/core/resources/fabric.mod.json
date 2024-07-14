@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "architectury",
+  "id": "architectury-core",
   "version": "${version}",
   "name": "Architectury",
-  "description": "A intermediary api aimed to ease developing multiplatform mods.",
+  "description": "The core of the Architectury API",
   "authors": [
     "shedaniel"
   ],

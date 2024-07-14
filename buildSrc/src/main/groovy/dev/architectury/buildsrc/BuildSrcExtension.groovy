@@ -10,6 +10,7 @@ import dev.architectury.transformer.Transformer
 import dev.architectury.transformer.input.OpenedFileAccess
 import dev.architectury.transformer.transformers.TransformExpectPlatform
 import net.fabricmc.loom.LoomGradleExtension
+import net.fabricmc.loom.util.Constants
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
@@ -103,6 +104,8 @@ public abstract class BuildSrcExtension {
                 destinationDirectory.set(new File(project.getLayout().getBuildDirectory().getAsFile().get(), "devlibs"))
                 archiveClassifier.set(module.key)
             }
+
+            getProject().artifacts(artifactHandler -> artifactHandler.add(Constants.Configurations.NAMED_ELEMENTS, task))
 
 
             def shadowTask = project.tasks.register(module.value.shadowJarTaskName, ShadowJar) {
