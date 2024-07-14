@@ -21,7 +21,7 @@ package dev.architectury.networking.forge;
 
 
 import com.mojang.logging.LogUtils;
-import dev.architectury.impl.NetworkAggregator;
+import dev.architectury.networking.impl.NetworkAggregator;
 import dev.architectury.networking.NetworkManager;
 import dev.architectury.networking.NetworkManager.NetworkReceiver;
 import dev.architectury.networking.SpawnEntityPacket;

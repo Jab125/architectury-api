@@ -17,7 +17,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.impl;
+package dev.architectury.networking.impl;
 
 import com.google.common.base.Suppliers;
 import dev.architectury.networking.NetworkManager;

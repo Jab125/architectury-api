@@ -19,7 +19,13 @@ buildSrc {
     module("core").dependsOn("annotations")
     module("misc").dependsOn("core")
     module("misc").dependsOn("networking")
+    module("misc").dependsOn("events")
+    module("misc").dependsOn("hooks")
+    module("events").dependsOn("core")
+    module("events").dependsOn("hooks")
+    module("hooks").dependsOn("core")
     module("networking").dependsOn("core")
+    module("networking").dependsOn("events")
 }
 
 System.out.println(buildSrc.module("annotations").transitiveDependencies)

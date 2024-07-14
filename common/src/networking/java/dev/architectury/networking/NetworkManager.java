@@ -19,7 +19,7 @@
 
 package dev.architectury.networking;
 
-import dev.architectury.impl.NetworkAggregator;
+import dev.architectury.networking.impl.NetworkAggregator;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.networking.transformers.PacketCollector;
 import dev.architectury.networking.transformers.PacketSink;
