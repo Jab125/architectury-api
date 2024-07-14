@@ -186,7 +186,7 @@ public abstract class BuildSrcExtension {
                                 def transformers = new ArrayList<Transformer>(it.transformers.get())
                                 transformers.removeIf(a -> a instanceof TransformExpectPlatform)
                                 it.transformers.set(transformers)
-                                it.transformers.add(new TransformExpectPlatform2())
+                                it.transformers.add(new TransformExpectPlatform2(module.key == "annotations"))
                             }
                             loader.transformProduction.invoke(it, loom, settings)
 
