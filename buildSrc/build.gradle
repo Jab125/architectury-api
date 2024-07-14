@@ -20,5 +20,6 @@ gradlePlugin {
 
 
 dependencies {
+    implementation "architectury-plugin:architectury-plugin.gradle.plugin:3.4-SNAPSHOT"
     implementation "dev.architectury:architectury-loom:1.6-SNAPSHOT"
 }
