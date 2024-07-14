@@ -44,12 +44,12 @@ public class MixinItemProperties implements InjectedItemPropertiesExtension, Ite
         return (Item.Properties) (Object) this;
     }
     
-    @Override
-    public Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
-        this.tab = null;
-        this.tabSupplier = tab;
-        return (Item.Properties) (Object) this;
-    }
+//    @Override
+//    public Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
+//        this.tab = null;
+//        this.tabSupplier = tab;
+//        return (Item.Properties) (Object) this;
+//    }
     
     @Override
     public Item.Properties arch$tab(ResourceKey<CreativeModeTab> tab) {

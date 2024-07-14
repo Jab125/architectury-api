@@ -19,15 +19,25 @@
 
 package dev.architectury.extensions.injected;
 
-import dev.architectury.hooks.item.food.FoodPropertiesHooks;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.food.FoodProperties;
+//import dev.architectury.registry.registries.DeferredSupplier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.ApiStatus;
 
-import java.util.function.Supplier;
-
-public interface InjectedFoodPropertiesBuilderExtension {
-    default FoodProperties.Builder arch$effect(Supplier<? extends MobEffectInstance> effectSupplier, float chance) {
-        FoodPropertiesHooks.effect((FoodProperties.Builder) this, effectSupplier, chance);
-        return (FoodProperties.Builder) this;
+public interface InjectedItemPropertiesExtension {
+    @ApiStatus.Experimental
+    default Item.Properties arch$tab(CreativeModeTab tab) {
+        throw new UnsupportedOperationException();
+    }
+    
+//    @ApiStatus.Experimental
+//    default Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
+//        throw new UnsupportedOperationException();
+//    }
+    
+    @ApiStatus.Experimental
+    default Item.Properties arch$tab(ResourceKey<CreativeModeTab> tab) {
+        throw new UnsupportedOperationException();
     }
 }

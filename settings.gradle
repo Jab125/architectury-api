@@ -16,9 +16,9 @@ include("fabric")
 //include("forge")
 //include("minecraftforge")
 include("neoforge")
-include("testmod-common")
-include("testmod-fabric")
+//TODO include("testmod-common")
+//TODO include("testmod-fabric")
 //include("testmod-forge")
-include("testmod-neoforge")
+//TODO include("testmod-neoforge")
 
 rootProject.name = "architectury"
