@@ -27,4 +27,8 @@ public record ProjectModule(BuildSrcExtension extension, String name, Set<Projec
     public String getRemapJarTaskName() {
         return "remap" + StringGroovyMethods.capitalize(getJarTaskName());
     }
+    
+    public String getShadowJarTaskName() {
+        return "shadow" + StringGroovyMethods.capitalize(getJarTaskName());
+    }
 }

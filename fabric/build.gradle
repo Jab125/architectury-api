@@ -1,7 +1,8 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1"
     id "me.shedaniel.unified-publishing"
 }
+
+apply plugin: "com.github.johnrengelman.shadow"
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
@@ -35,7 +36,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
-buildSrc.platformSetup()
+buildSrc.platformSetup("fabric")
 buildSrc.setupTasks()
 
 processResources {

@@ -1,5 +1,6 @@
 package dev.architectury.buildsrc
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import dev.architectury.buildsrc.transformer.TransformExpectPlatform2
 import dev.architectury.plugin.ArchitectPluginExtension
 import dev.architectury.plugin.ModLoader
@@ -66,7 +67,7 @@ public abstract class BuildSrcExtension {
         project.logger.info("Setup common project")
     }
 
-    void platformSetup() {
+    void platformSetup(String loader) {
         SourceSetContainer sourceSets = getProject().extensions.findByName("sourceSets") as SourceSetContainer
         getModules().each {
             def name = it.key
@@ -75,6 +76,8 @@ public abstract class BuildSrcExtension {
             SourceSet sourceSet = sourceSets.maybeCreate(name)
 
             project.dependencies.add(name + "Implementation", (project.project(":common").extensions.findByName("sourceSets") as SourceSetContainer).findByName(name).output)
+            project.configurations.maybeCreate("shadow" + name.capitalize() + "Common")
+            project.dependencies.add("shadow" + name.capitalize() + "Common", project.dependencies.project(path: ":common", configuration: "${name}TransformProduction${loader.capitalize()}"))
             module.transitiveDependencies.each { i ->
                 SourceSet dep = sourceSets.maybeCreate(i.name())
                 sourceSet.compileClasspath += dep.compileClasspath
@@ -101,9 +104,20 @@ public abstract class BuildSrcExtension {
                 archiveClassifier.set(module.key)
             }
 
+
+            def shadowTask = project.tasks.register(module.value.shadowJarTaskName, ShadowJar) {
+                from task
+                setGroup("shadow")
+                exclude "architectury-common.accessWidener"
+                exclude "architectury.common.json"
+                configurations = [project.configurations.maybeCreate("shadow" + module.key.capitalize() + "Common")]
+                archiveClassifier = "dev-shadow-" + module.key
+            }
+
             def remapTask = project.tasks.register(module.value.remapJarTaskName, net.fabricmc.loom.task.RemapJarTask) {
-                dependsOn task
-                input = task.get().archiveFile
+                setGroup("build")
+                dependsOn shadowTask
+                input = shadowTask.get().archiveFile
                 archiveClassifier = module.key
                 addNestedDependencies = false
             }
@@ -121,7 +135,7 @@ public abstract class BuildSrcExtension {
         return project.extensions.findByName("architectury") as ArchitectPluginExtension
     }
 
-    void setupArchitecturyPlugin(ArchitectPluginExtension.CommonSettings settings) {
+    void setupCommonTransforms(ArchitectPluginExtension.CommonSettings settings) {
         def buildTask = project.tasks.getByName("build")
         LoomInterface loom = GroovyWorkaround.loomInterface(project);
         //ArchitectPluginExtension.CommonSettings settings = null;
@@ -129,9 +143,9 @@ public abstract class BuildSrcExtension {
             def jarTask = project.tasks.getByName(module.value.jarTaskName) as AbstractArchiveTask
             jarTask.archiveClassifier.set(module.key + "-dev")
             for (loader in settings.loaders) {
-                project.configurations.maybeCreate("transformProduction${loader.titledId}")
+                project.configurations.maybeCreate(module.key + "TransformProduction${loader.titledId}")
                 def transformProductionTask =
-                        project.tasks.register(module.key + "transformProduction${loader.titledId}".capitalize(), TransformingTask.class) { TransformingTask it ->
+                        project.tasks.register(module.key + "TransformProduction${loader.titledId}".capitalize(), TransformingTask.class) { TransformingTask it ->
                             it.group = "Architectury"
                             it.platform = loader.id
                             it.doFirst { _ ->
@@ -149,7 +163,7 @@ public abstract class BuildSrcExtension {
                             it.archiveClassifier.set("${module.key}TransformProduction${loader.titledId}")
                             it.input.set(jarTask.archiveFile)
 
-                            project.artifacts.add("transformProduction${loader.titledId}", it)
+                            project.artifacts.add("${module.key}TransformProduction${loader.titledId}", it)
                             it.dependsOn(jarTask)
                             buildTask.dependsOn(it)
                         }
@@ -183,4 +197,16 @@ public abstract class BuildSrcExtension {
             }
         }
     }
+
+//    void setupPlatformTransforms() {
+//        getModules().each {
+////            project.shadowJar {
+////                exclude "architectury-common.accessWidener"
+////                exclude "architectury.common.json"
+////
+////                configurations = [project.configurations.shadowCommon]
+////                archiveClassifier = "dev-shadow"
+////            }
+//        }
+//    }
 }

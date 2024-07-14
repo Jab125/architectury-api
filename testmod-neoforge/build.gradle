@@ -1,7 +1,8 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.0.0"
     id "com.matthewprenger.cursegradle"
 }
+
+apply plugin: "com.github.johnrengelman.shadow"
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
