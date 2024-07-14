@@ -18,6 +18,8 @@ plugins {
 buildSrc {
     module("core").dependsOn("annotations")
     module("misc").dependsOn("core")
+    module("misc").dependsOn("networking")
+    module("networking").dependsOn("core")
 }
 
 System.out.println(buildSrc.module("annotations").transitiveDependencies)
