@@ -61,12 +61,15 @@ public abstract class BuildSrcExtension {
             def module = it.value
 
             SourceSet sourceSet = sourceSets.maybeCreate(name)
+
+            project.dependencies.add(name + "Implementation", (project.project(":common").extensions.findByName("sourceSets") as SourceSetContainer).findByName(name).output)
             module.transitiveDependencies.each { i ->
                 SourceSet dep = sourceSets.maybeCreate(i.name())
                 sourceSet.compileClasspath += dep.compileClasspath
                 sourceSet.runtimeClasspath += dep.runtimeClasspath
                 sourceSet.compileClasspath += sourceSets.main.compileClasspath
                 sourceSet.runtimeClasspath += sourceSets.main.runtimeClasspath
+                project.dependencies.add(name + "Implementation", (project.project(":common").extensions.findByName("sourceSets") as SourceSetContainer).findByName(i.name()).output)
                 project.dependencies.add(name + "Implementation", dep.output)
             }
             // I hate classloaders
