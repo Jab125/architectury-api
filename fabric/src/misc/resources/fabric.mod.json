@@ -20,7 +20,7 @@
   ],
   "entrypoints": {
     "main": [
-      "dev.architectury.utils.fabric.GameInstanceImpl::init"
+      "dev.architectury.platform.fabric.GameInstanceImpl::init"
     ],
     "server": [
       "dev.architectury.init.fabric.ArchitecturyServer::init"
