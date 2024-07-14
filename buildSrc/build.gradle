@@ -3,9 +3,10 @@ plugins {
 }
 
 repositories {
-    maven {
-        url "https://maven.architectury.dev/"
-    }
+    maven { url "https://maven.fabricmc.net/" }
+    maven { url "https://maven.architectury.dev/" }
+    maven { url "https://files.minecraftforge.net/maven/" }
+    gradlePluginPortal()
 }
 
 gradlePlugin {
@@ -19,5 +20,5 @@ gradlePlugin {
 
 
 dependencies {
-    compileOnly "dev.architectury:architectury-loom:1.6-SNAPSHOT"
+    implementation "dev.architectury:architectury-loom:1.6-SNAPSHOT"
 }

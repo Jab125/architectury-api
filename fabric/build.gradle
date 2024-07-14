@@ -29,11 +29,14 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modCompileOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") { transitive false }
 
-    common(project(":common").sourceSets.misc.output)
-    common(project(":common").sourceSets.core.output)
+//    common(project(":common").sourceSets.misc.output)
+//    common(project(":common").sourceSets.core.output)
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
+
+buildSrc.platformSetup()
+buildSrc.setupTasks()
 
 processResources {
     filesMatching("fabric.mod.json") {
