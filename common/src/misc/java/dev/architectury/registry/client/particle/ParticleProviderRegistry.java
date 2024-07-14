@@ -20,7 +20,6 @@
 package dev.architectury.registry.client.particle;
 
 import dev.architectury.event.events.client.ClientLifecycleEvent;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

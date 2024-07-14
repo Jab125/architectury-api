@@ -2,10 +2,33 @@ loom {
     accessWidenerPath = file("src/main/resources/architectury.accessWidener")
 }
 
+sourceSets {
+    annotations {}
+    core {
+        compileClasspath += main.compileClasspath
+        runtimeClasspath += main.runtimeClasspath
+        compileClasspath += annotations.compileClasspath
+        runtimeClasspath += annotations.runtimeClasspath
+    }
+    misc {
+        compileClasspath += core.compileClasspath
+        runtimeClasspath += core.runtimeClasspath
+        compileClasspath += main.compileClasspath
+        runtimeClasspath += main.runtimeClasspath
+        compileClasspath += annotations.compileClasspath
+        runtimeClasspath += annotations.runtimeClasspath
+    }
+    loom.createRemapConfigurations(annotations)
+    loom.createRemapConfigurations(core)
+    loom.createRemapConfigurations(misc)
+}
+
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    miscImplementation sourceSets.core.output
+    coreImplementation sourceSets.annotations.output
 }
 
 architectury {
