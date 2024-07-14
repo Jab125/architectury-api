@@ -1,5 +1,7 @@
 package dev.architectury.buildsrc;
 
+import org.codehaus.groovy.runtime.StringGroovyMethods;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,5 +18,13 @@ public record ProjectModule(BuildSrcExtension extension, String name, Set<Projec
         HashSet<ProjectModule> objects = new HashSet<>(dependencies);
         dependencies.forEach(o -> objects.addAll(o.getTransitiveDependencies()));
         return objects;
+    }
+    
+    public String getJarTaskName() {
+        return name + "Jar";
+    }
+    
+    public String getRemapJarTaskName() {
+        return "remap" + StringGroovyMethods.capitalize(getJarTaskName());
     }
 }
