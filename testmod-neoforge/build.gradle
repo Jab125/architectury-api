@@ -32,7 +32,11 @@ configurations {
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
-    implementation(project(path: ":neoforge", configuration: "namedElements")) { transitive false }
+    buildSrc.getModules().each {
+        implementation project(":neoforge").sourceSets.maybeCreate(it.key).output
+        implementation project(":common").sourceSets.maybeCreate(it.key).output
+    }
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
 }

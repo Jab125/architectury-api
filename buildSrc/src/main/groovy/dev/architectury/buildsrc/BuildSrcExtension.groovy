@@ -10,6 +10,7 @@ import dev.architectury.transformer.Transformer
 import dev.architectury.transformer.input.OpenedFileAccess
 import dev.architectury.transformer.transformers.TransformExpectPlatform
 import net.fabricmc.loom.LoomGradleExtension
+import net.fabricmc.loom.api.ModSettings
 import net.fabricmc.loom.util.Constants
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
@@ -90,6 +91,36 @@ public abstract class BuildSrcExtension {
             }
             // I hate classloaders
            LoomGradleExtension.get(project).createRemapConfigurations(sourceSet)
+            //System.out.println(c)
+        }
+        project.logger.info("Setup platform project")
+    }
+
+    void forgeSetup(String loader) {
+        SourceSetContainer sourceSets = getProject().extensions.findByName("sourceSets") as SourceSetContainer
+        getModules().each {
+            def name = it.key
+            def module = it.value
+
+            SourceSet sourceSet = sourceSets.maybeCreate(name)
+
+            project.dependencies.add(name + "Implementation", (project.project(":common").extensions.findByName("sourceSets") as SourceSetContainer).findByName(name).output)
+            project.configurations.maybeCreate("shadow" + name.capitalize() + "Common")
+            project.dependencies.add("shadow" + name.capitalize() + "Common", project.dependencies.project(path: ":common", configuration: "${name}TransformProduction${loader.capitalize()}"))
+
+            def mod = loom().mods.maybeCreate(name)
+            mod.sourceSet(sourceSet)
+            module.transitiveDependencies.each { i ->
+                SourceSet dep = sourceSets.maybeCreate(i.name())
+                sourceSet.compileClasspath += dep.compileClasspath
+                sourceSet.runtimeClasspath += dep.runtimeClasspath
+                sourceSet.compileClasspath += sourceSets.main.compileClasspath
+                sourceSet.runtimeClasspath += sourceSets.main.runtimeClasspath
+                project.dependencies.add(name + "Implementation", (project.project(":common").extensions.findByName("sourceSets") as SourceSetContainer).findByName(i.name()).output)
+                project.dependencies.add(name + "Implementation", dep.output)
+            }
+            // I hate classloaders
+            LoomGradleExtension.get(project).createRemapConfigurations(sourceSet)
             //System.out.println(c)
         }
         project.logger.info("Setup platform project")

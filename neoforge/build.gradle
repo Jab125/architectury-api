@@ -23,14 +23,24 @@ configurations {
     developmentNeoForge.extendsFrom common
 }
 
+buildSrc.forgeSetup("neoForge")
+
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
+    buildSrc.getModules().each {
+        localRuntime sourceSets.maybeCreate(it.key).output
+    }
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
 }
 
-processResources {
+buildSrc.setupTasks()
+loom.mods.each {
+    System.out.println(it)
+}
+
+tasks.withType(ProcessResources).configureEach {
     filesMatching("META-INF/neoforge.mods.toml") {
         expand "version": project.version
     }

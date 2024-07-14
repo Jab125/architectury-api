@@ -4,9 +4,9 @@ issueTrackerURL = "https://github.com/shedaniel/architectury/issues"
 license = "GNU LGPLv3"
 
 [[mods]]
-modId = "architectury"
+modId = "architectury_core"
 version = "${version}"
-displayName = "Architectury"
+displayName = "Architectury Core"
 authors = "shedaniel"
 description = '''
 A intermediary api aimed to ease developing multiplatform mods.
@@ -14,14 +14,14 @@ A intermediary api aimed to ease developing multiplatform mods.
 logoFile = "icon.png"
 license = "LGPL-3"
 
-[[dependencies.architectury]]
+[[dependencies.architectury_core]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.20.6,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.architectury]]
+[[dependencies.architectury_core]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.6.98-beta,)"

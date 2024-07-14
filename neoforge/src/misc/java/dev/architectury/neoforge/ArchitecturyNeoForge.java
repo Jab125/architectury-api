@@ -27,7 +27,7 @@ import dev.architectury.utils.Env;
 import dev.architectury.utils.EnvExecutor;
 import net.neoforged.fml.common.Mod;
 
-@Mod(ArchitecturyConstants.MOD_ID)
+@Mod(ArchitecturyConstants.MOD_ID + "_misc")
 public class ArchitecturyNeoForge {
     public ArchitecturyNeoForge() {
         EventHandler.init();
