@@ -2,18 +2,21 @@ package dev.architectury.buildsrc
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import dev.architectury.buildsrc.meta.MetadataGeneration
+import dev.architectury.buildsrc.transformer.AddRefmapName2
 import dev.architectury.buildsrc.transformer.RemapInjectables2
 import dev.architectury.buildsrc.transformer.TransformExpectPlatform2
 import dev.architectury.plugin.ArchitectPluginExtension
 import dev.architectury.plugin.ModLoader
 import dev.architectury.plugin.TransformingTask
 import dev.architectury.plugin.loom.LoomInterface
+import dev.architectury.plugin.transformers.AddRefmapName
 import dev.architectury.transformer.Transformer
 import dev.architectury.transformer.input.OpenedFileAccess
 import dev.architectury.transformer.transformers.RemapInjectables
 import dev.architectury.transformer.transformers.TransformExpectPlatform
 import net.fabricmc.loom.LoomGradleExtension
 import net.fabricmc.loom.api.ModSettings
+import net.fabricmc.loom.task.RemapJarTask
 import net.fabricmc.loom.util.Constants
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
@@ -131,6 +134,7 @@ public abstract class BuildSrcExtension {
 
     void setupTasks() {
         def generateMetadata = project.task("generateMetadata")
+        def remapJarTask = project.tasks.getByName("remapJar") as RemapJarTask
         SourceSetContainer sourceSets = getProject().extensions.findByName("sourceSets") as SourceSetContainer
         getModules().each { module ->
             def task = project.tasks.register(module.value.jarTaskName, Jar) {
@@ -159,6 +163,9 @@ public abstract class BuildSrcExtension {
                 archiveClassifier = module.key
                 addNestedDependencies = false
             }
+
+            remapJarTask.nestedJars.from remapTask
+
             project.getTasksByName("build", false).each { buildTask ->
                 buildTask.dependsOn(remapTask)
             }
@@ -199,9 +206,11 @@ public abstract class BuildSrcExtension {
                                 def transformers = new ArrayList<Transformer>(it.transformers.get())
                                 transformers.removeIf(a -> a instanceof TransformExpectPlatform)
                                 transformers.removeIf(a -> a instanceof RemapInjectables)
+                                transformers.removeIf(a -> a instanceof AddRefmapName)
                                 it.transformers.set(transformers)
                                 it.transformers.add(new TransformExpectPlatform2(module.key == "annotations"))
                                 it.transformers.add(new RemapInjectables2())
+                                it.transformers.add(new AddRefmapName2(module.key))
                             }
                             loader.transformProduction.invoke(it, loom, settings)
 
