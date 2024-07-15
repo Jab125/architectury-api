@@ -18,6 +18,6 @@
  */
 
 @ApiStatus.Internal
-package dev.architectury.impl;
+package dev.architectury.hooks.impl;
 
 import org.jetbrains.annotations.ApiStatus;
