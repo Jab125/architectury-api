@@ -22,7 +22,7 @@ package dev.architectury.event.events.client;
 import dev.architectury.event.Event;
 import dev.architectury.event.EventFactory;
 import dev.architectury.event.EventResult;
-//import dev.architectury.impl.TooltipAdditionalContextsImpl;
+import dev.architectury.event.impl.TooltipAdditionalContextsImpl;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
@@ -55,8 +55,7 @@ public interface ClientTooltipEvent {
     Event<RenderModifyColor> RENDER_MODIFY_COLOR = EventFactory.createLoop();
     
     static AdditionalContexts additionalContexts() {
-        return null;
-        //return TooltipAdditionalContextsImpl.get();
+        return TooltipAdditionalContextsImpl.get();
     }
     
     @ApiStatus.NonExtendable

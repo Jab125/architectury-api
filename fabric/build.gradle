@@ -37,7 +37,7 @@ dependencies {
 }
 
 buildSrc.platformSetup("fabric")
-buildSrc.setupTasks()
+buildSrc.setupTasks(false)
 
 tasks.withType(ProcessResources).configureEach {
     filesMatching("fabric.mod.json") {

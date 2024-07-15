@@ -16,11 +16,13 @@ import dev.architectury.transformer.transformers.RemapInjectables
 import dev.architectury.transformer.transformers.TransformExpectPlatform
 import net.fabricmc.loom.LoomGradleExtension
 import net.fabricmc.loom.api.ModSettings
+import net.fabricmc.loom.build.nesting.IncludedJarFactory
 import net.fabricmc.loom.task.RemapJarTask
 import net.fabricmc.loom.util.Constants
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.AbstractArchiveTask
 import org.gradle.jvm.tasks.Jar;
 
@@ -132,7 +134,7 @@ public abstract class BuildSrcExtension {
         project.logger.info("Setup platform project")
     }
 
-    void setupTasks() {
+    void setupTasks(boolean common) {
         def generateMetadata = project.task("generateMetadata")
         def remapJarTask = project.tasks.getByName("remapJar") as RemapJarTask
         SourceSetContainer sourceSets = getProject().extensions.findByName("sourceSets") as SourceSetContainer
@@ -146,25 +148,36 @@ public abstract class BuildSrcExtension {
 
             getProject().artifacts(artifactHandler -> artifactHandler.add(Constants.Configurations.NAMED_ELEMENTS, task))
 
-
-            def shadowTask = project.tasks.register(module.value.shadowJarTaskName, ShadowJar) {
-                from task
-                setGroup("shadow")
-                exclude "architectury-common.accessWidener"
-                exclude "architectury.common.json"
-                configurations = [project.configurations.maybeCreate("shadow" + module.key.capitalize() + "Common")]
-                archiveClassifier = "dev-shadow-" + module.key
+            TaskProvider<Jar> provider
+            if (!common) {
+                def shadowTask = project.tasks.register(module.value.shadowJarTaskName, ShadowJar) {
+                    from task
+                    setGroup("shadow")
+                    exclude "architectury-common.accessWidener"
+                    exclude "architectury.common.json"
+                    configurations = [project.configurations.maybeCreate("shadow" + module.key.capitalize() + "Common")]
+                    archiveClassifier = "dev-shadow-" + module.key
+                }
+                provider = shadowTask
+            } else {
+                provider = task
             }
 
             def remapTask = project.tasks.register(module.value.remapJarTaskName, net.fabricmc.loom.task.RemapJarTask) {
                 setGroup("build")
-                dependsOn shadowTask
-                input = shadowTask.get().archiveFile
+                dependsOn provider
+                input = provider.get().archiveFile
                 archiveClassifier = module.key
                 addNestedDependencies = false
             }
 
-            remapJarTask.nestedJars.from remapTask
+            if (!common) {
+                if (!project.name.contains("forge")) {
+                    remapJarTask.nestedJars.from remapTask
+                } else {
+                    remapJarTask.forgeNestedJars.add(new IncludedJarFactory.NestedFile(new IncludedJarFactory.Metadata("dev.architectury", module.key, (String) project.property("version"), ""), remapTask.get().archiveFile.get().asFile));
+                }
+            }
 
             project.getTasksByName("build", false).each { buildTask ->
                 buildTask.dependsOn(remapTask)

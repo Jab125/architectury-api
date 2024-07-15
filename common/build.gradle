@@ -31,7 +31,7 @@ dependencies {
     //coreImplementation sourceSets.annotations.output
 }
 buildSrc.commonSetup()
-buildSrc.setupTasks()
+buildSrc.setupTasks(true)
 
 architectury {
     common(rootProject.platforms.split(",")) {

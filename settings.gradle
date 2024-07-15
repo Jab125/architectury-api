@@ -19,6 +19,6 @@ include("neoforge")
 include("testmod-common")
 include("testmod-fabric")
 //include("testmod-forge")
-//TODO include("testmod-neoforge")
+include("testmod-neoforge")
 
 rootProject.name = "architectury"

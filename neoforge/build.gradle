@@ -35,7 +35,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
 }
 
-buildSrc.setupTasks()
+buildSrc.setupTasks(false)
 loom.mods.each {
     System.out.println(it)
 }

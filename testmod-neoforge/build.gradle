@@ -37,6 +37,18 @@ dependencies {
         implementation project(":common").sourceSets.maybeCreate(it.key).output
     }
 
+    // Depend on base mod too.
+    implementation project(":neoforge").sourceSets.main.output
+    implementation project(":common").sourceSets.main.output
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
+}
+
+loom {
+    mods {
+        buildSrc.getModules().each { module ->
+            it.maybeCreate(module.key).sourceSet(project(":neoforge").sourceSets.maybeCreate(module.key))
+        }
+    }
 }
