@@ -25,7 +25,7 @@ import dev.architectury.event.EventResult;
 import dev.architectury.event.events.client.ClientChatEvent;
 import dev.architectury.event.events.client.*;
 import dev.architectury.event.events.common.InteractionEvent;
-import dev.architectury.impl.ScreenAccessImpl;
+import dev.architectury.hooks.impl.ScreenAccessImpl;
 import dev.architectury.impl.TooltipEventColorContextImpl;
 import dev.architectury.impl.TooltipEventPositionContextImpl;
 import net.minecraft.client.Minecraft;
