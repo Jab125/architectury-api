@@ -15,12 +15,13 @@
   "license": "License",
   "environment": "*",
   "mixins": [
-      "architectury-common.mixins.json",
-      "architectury.mixins.json"
+      "architectury.mixins.json",
+      "architectury-common.mixins.json"
   ],
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
+      "fabricloader": ">=0.15",
     "architectury_registry": "${version}",
     "architectury_networking": "${version}",
     "architectury_fluids": "${version}",
