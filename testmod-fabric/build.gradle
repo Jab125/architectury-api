@@ -37,8 +37,8 @@ dependencies {
     }
 
     // Depend on base mod too.
-    implementation project(":common").sourceSets.main.output
     implementation project(":fabric").sourceSets.main.output
+    implementation project(":common").sourceSets.main.output
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
