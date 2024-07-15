@@ -3,16 +3,16 @@
   "id": "architectury_registrybiomes",
   "version": "${version}",
   "name": "Architectury (registryBiomes)",
-  "description": "",
+  "description": "Split off of Architectury (registry) due to dependencies.",
   "authors": [
     "shedaniel"
   ],
   "contact": {
-    "issues": "a",
-    "sources": "b",
-    "homepage": "c"
+    "issues": "https://github.com/architectury/architectury-api/issues",
+    "sources": "https://github.com/architectury/architectury-api",
+    "homepage": "https://architectury.github.io/architectury-documentations/"
   },
-  "license": "License",
+  "license": "LGPL-3",
   "environment": "*",
   "mixins": [],
   "entrypoints": {},

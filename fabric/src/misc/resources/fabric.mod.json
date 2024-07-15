@@ -3,16 +3,16 @@
   "id": "architectury_misc",
   "version": "${version}",
   "name": "Architectury (misc)",
-  "description": "",
+  "description": "Miscellaneous APIs that have not been sorted into a module.",
   "authors": [
     "shedaniel"
   ],
   "contact": {
-    "issues": "a",
-    "sources": "b",
-    "homepage": "c"
+    "issues": "https://github.com/architectury/architectury-api/issues",
+    "sources": "https://github.com/architectury/architectury-api",
+    "homepage": "https://architectury.github.io/architectury-documentations/"
   },
-  "license": "License",
+  "license": "LGPL-3",
   "environment": "*",
   "mixins": [
     "architectury.mixins.json",
@@ -26,8 +26,8 @@
     "architectury_registry": "${version}",
     "fabric-api": "\u003e\u003d0.99.0",
     "fabricloader": "\u003e\u003d0.15.11",
-    "architectury_fluids": "${version}",
     "architectury_extensions": "${version}",
+    "architectury_fluids": "${version}",
     "architectury_hooks": "${version}",
     "architectury_events": "${version}",
     "architectury_core": "${version}"
