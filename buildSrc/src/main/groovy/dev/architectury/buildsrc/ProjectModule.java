@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public record ProjectModule(BuildSrcExtension extension, String name, Set<ProjectModule> dependencies) {
+public record ProjectModule(BuildSrcExtension extension, String name, Reference<String> description, Set<ProjectModule> dependencies) {
     public ProjectModule dependsOn(String module) {
         ProjectModule dependantModule = extension.module(module);
         dependencies.add(dependantModule);

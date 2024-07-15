@@ -1,6 +1,7 @@
 package dev.architectury.buildsrc
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import dev.architectury.buildsrc.meta.MetadataGeneration
 import dev.architectury.buildsrc.transformer.RemapInjectables2
 import dev.architectury.buildsrc.transformer.TransformExpectPlatform2
 import dev.architectury.plugin.ArchitectPluginExtension
@@ -47,7 +48,7 @@ public abstract class BuildSrcExtension {
 
     ProjectModule createModule(String name) {
         if (getProject() != getProject().rootProject) throw new IllegalAccessException()
-        return new ProjectModule(get(getProject()), name, new HashSet<ProjectModule>())
+        return new ProjectModule(get(getProject()), name, new Reference<String>(""), new HashSet<ProjectModule>())
     }
 
     void commonSetup() {
@@ -129,6 +130,7 @@ public abstract class BuildSrcExtension {
     }
 
     void setupTasks() {
+        def generateMetadata = project.task("generateMetadata")
         SourceSetContainer sourceSets = getProject().extensions.findByName("sourceSets") as SourceSetContainer
         getModules().each { module ->
             def task = project.tasks.register(module.value.jarTaskName, Jar) {
@@ -160,6 +162,14 @@ public abstract class BuildSrcExtension {
             project.getTasksByName("build", false).each { buildTask ->
                 buildTask.dependsOn(remapTask)
             }
+
+            def generateModuleMetadata = project.task("generate" + module.key.capitalize() + "Metadata") {
+                doLast {
+                    def generation = new MetadataGeneration(project, "fabric")
+                    project.file("src/" + module.key + "/resources/fabric.mod.json").text = generation.generateMetadata(module.value)
+                }
+            }
+            generateMetadata.dependsOn(generateModuleMetadata)
         }
     }
 
