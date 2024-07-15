@@ -34,9 +34,11 @@ public class MetadataGeneration {
             fabricModJsonBuilder.description(module.description().get());
             fabricModJsonBuilder.authors(new String[]{"shedaniel"});
             fabricModJsonBuilder.contact(new FabricModJson.ContactInfo(
-                    "a", "b", "c"
+                    "https://github.com/architectury/architectury-api/issues",
+                    "https://github.com/architectury/architectury-api",
+                    "https://architectury.github.io/architectury-documentations/"
             ));
-            fabricModJsonBuilder.license("License");
+            fabricModJsonBuilder.license("LGPL-3");
             fabricModJsonBuilder.environment("*");
             fabricModJsonBuilder.mixins(module.getMixinsFor(loader).toArray(String[]::new));
             fabricModJsonBuilder.entrypoints(Map.of());
