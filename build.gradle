@@ -16,16 +16,47 @@ plugins {
 }
 
 buildSrc {
-    module("core").dependsOn("annotations")
-    module("misc").mixin("fabric:architectury.mixins.json", "architectury-common.mixins.json").dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
-    module("legacyExtensions").mixin("architectury-legacyExtensions.mixins.json").dependsOn("registry", "extensions", "hooks", "fluids")
-    module("registry").dependsOn("core")
-    module("registryBiomes").dependsOn("hooks")
-    module("events").dependsOn("core", 'hooks')
-    module("hooks").dependsOn("core", "extensions")
-    module("networking").dependsOn("core", "events")
-    module("extensions").dependsOn("core")
-    module("fluids").dependsOn("core", "extensions", "registry")
+    module("core")
+            .description("Core module of Architectury API.")
+            .dependsOn("annotations")
+
+    module("misc")
+            .description("Miscellaneous APIs that have not been sorted into a module.")
+            .mixin("fabric:architectury.mixins.json", "architectury-common.mixins.json")
+            .dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
+    module("legacyExtensions")
+            .description("Deprecated interface injections.")
+            .mixin("architectury-legacyExtensions.mixins.json")
+            .dependsOn("registry", "extensions", "hooks", "fluids")
+
+    module("registry")
+            .description("Provides abstractions over loader-specific registration.")
+            .dependsOn("core")
+
+    module("registryBiomes")
+            .description("Split off of Architectury (registry) due to dependencies.")
+            .dependsOn("hooks")
+
+    module("events")
+            .description("Events for client and common scenarios.")
+            .dependsOn("core", 'hooks')
+
+    module("hooks")
+            .description("Utility methods for use in multiloader setups.")
+            .dependsOn("core", "extensions")
+
+    module("networking")
+            .description("An abstraction over loader-specific networking APIs.")
+            .dependsOn("core", "events")
+
+    // TODO merge this with core?
+    module("extensions")
+            .description("Generic interface injections.")
+            .dependsOn("core")
+
+    module("fluids")
+            .description("Abstractions over loader-specific fluid APIs")
+            .dependsOn("core", "extensions", "registry")
 }
 
 System.out.println(buildSrc.module("annotations").transitiveDependencies)
