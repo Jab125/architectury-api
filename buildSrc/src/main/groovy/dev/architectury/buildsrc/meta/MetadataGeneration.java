@@ -3,15 +3,14 @@ package dev.architectury.buildsrc.meta;
 import dev.architectury.buildsrc.ProjectModule;
 import dev.architectury.buildsrc.meta.fabric.FabricModJson;
 import dev.architectury.buildsrc.meta.fabric.FabricModJsonBuilder;
+import dev.architectury.buildsrc.meta.neoforge.NeoForgeModsToml;
 import dev.architectury.plugin.ModLoader;
 import dev.architectury.transformer.shadowed.impl.com.google.gson.GsonBuilder;
 import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonArray;
 import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonObject;
 import org.gradle.api.Project;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class MetadataGeneration {
     
@@ -65,6 +64,28 @@ public class MetadataGeneration {
             jsonObject.add("modmenu", modmenu);
             fabricModJsonBuilder.custom(jsonObject);
             return new GsonBuilder().setPrettyPrinting().create().toJson(fabricModJsonBuilder);
+        } else if (loader.toLowerCase(Locale.ROOT).equals("neoforge")) {
+            HashMap<String, List<NeoForgeModsToml.Dependency>> dependencies = new HashMap<>();
+            List<NeoForgeModsToml.Dependency> moduleDepList = dependencies.computeIfAbsent("architectury_" + module.name().toLowerCase(Locale.ROOT), a -> new ArrayList<>());
+            moduleDepList.add(new NeoForgeModsToml.Dependency("minecraft", "required", "[1.20.6,)", "NONE", "BOTH"));
+            moduleDepList.add(new NeoForgeModsToml.Dependency("neoforge", "required", "[20.6.98-beta,)", "NONE", "BOTH"));
+            new NeoForgeModsToml(
+                    "javafml",
+                    "[1,)",
+                    "https://github.com/shedaniel/architectury/issues",
+                    "GNU LGPLv3",
+                    List.of(new NeoForgeModsToml.Mod(
+                            "architectury_" + module.name().toLowerCase(Locale.ROOT),
+                            "${version}",
+                            "Architectury (" + module.name() + ")",
+                            "shedaniel",
+                            module.description().get(),
+                            "icon.png",
+                            "LGPL-3"
+                    )),
+                    dependencies,
+                    module.getMixinsFor("neoforge").stream().map(NeoForgeModsToml.Mixin::new).toList()
+            );
         }
         return "error!";
     }

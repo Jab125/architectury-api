@@ -172,9 +172,15 @@ public abstract class BuildSrcExtension {
 
             def generateModuleMetadata = project.task("generate" + module.key.capitalize() + "Metadata") {
                 doLast {
-                    def generation = new MetadataGeneration(project, "fabric")
-                    project.file("src/" + module.key + "/resources/").mkdirs()
-                    project.file("src/" + module.key + "/resources/fabric.mod.json").text = generation.generateMetadata(module.value)
+                    if (project.name.contains("fabric")) {
+                        def generation = new MetadataGeneration(project, "fabric")
+                        project.file("src/" + module.key + "/resources/").mkdirs()
+                        project.file("src/" + module.key + "/resources/fabric.mod.json").text = generation.generateMetadata(module.value)
+                    } else if (project.name.contains("neoforge")) {
+                        def generation = new MetadataGeneration(project, "neoforge")
+                        project.file("src/" + module.key + "/resources/META-INF/").mkdirs()
+                        project.file("src/" + module.key + "/resources/META-INF/neoforge.mods.toml").text = generation.generateMetadata(module.value)
+                    }
                 }
             }
             generateMetadata.dependsOn(generateModuleMetadata)
