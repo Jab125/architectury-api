@@ -18,7 +18,7 @@ plugins {
 buildSrc {
     module("core").dependsOn("annotations")
     module("misc").dependsOn("core", "networking", "events", "hooks", "extensions", "registry")
-    module("legacyExtensions").dependsOn("registry", "extensions", "hooks")
+    module("legacyExtensions").dependsOn("registry", "extensions", "hooks", "fluids")
     module("registry").dependsOn("core")
     module("registryBiomes").dependsOn("hooks")
     module("events").dependsOn("core", 'hooks')

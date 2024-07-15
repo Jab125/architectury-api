@@ -23,8 +23,10 @@ import dev.architectury.hooks.fluid.LiquidBlockHooks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 
-public interface InjectedLiquidBlockExtension {
+@Deprecated
+public interface InjectedLiquidBlockExtension extends dev.architectury.extensions.injected.fluid.InjectedLiquidBlockExtension {
+    @Override
     default FlowingFluid arch$getFluid() {
-        return LiquidBlockHooks.getFluid((LiquidBlock) this);
+        return dev.architectury.extensions.injected.fluid.InjectedLiquidBlockExtension.super.arch$getFluid();
     }
 }

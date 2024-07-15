@@ -26,10 +26,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Deprecated
 public interface InjectedRegistryEntryExtension<T> extends dev.architectury.extensions.injected.registry.InjectedRegistryEntryExtension<T> {
+    @Override
     Holder<T> arch$holder();
     
+    @Override
     @Nullable
     default ResourceLocation arch$registryName() {
-        return arch$holder().unwrapKey().map(ResourceKey::location).orElse(null);
+        return dev.architectury.extensions.injected.registry.InjectedRegistryEntryExtension.super.arch$registryName();
     }
 }
