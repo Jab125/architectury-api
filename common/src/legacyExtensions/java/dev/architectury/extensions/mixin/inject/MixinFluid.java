@@ -17,18 +17,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.impl;
+package dev.architectury.extensions.mixin.inject;
 
-import dev.architectury.registry.registries.DeferredSupplier;
-import net.minecraft.world.item.CreativeModeTab;
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
+import dev.architectury.extensions.injected.InjectedFluidExtension;
+import net.minecraft.world.level.material.Fluid;
+import org.spongepowered.asm.mixin.Mixin;
 
-@ApiStatus.Internal
-public interface ItemPropertiesExtensionImpl {
-    @Nullable
-    CreativeModeTab arch$getTab();
-    
-    @Nullable
-    DeferredSupplier<CreativeModeTab> arch$getTabSupplier();
+@Mixin(Fluid.class)
+public class MixinFluid implements InjectedFluidExtension {
 }

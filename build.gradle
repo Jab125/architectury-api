@@ -17,7 +17,7 @@ plugins {
 
 buildSrc {
     module("core").dependsOn("annotations")
-    module("misc").dependsOn("core", "networking", "events", "hooks", "extensions", "registry")
+    module("misc").dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
     module("legacyExtensions").dependsOn("registry", "extensions", "hooks", "fluids")
     module("registry").dependsOn("core")
     module("registryBiomes").dependsOn("hooks")
@@ -25,7 +25,7 @@ buildSrc {
     module("hooks").dependsOn("core", "extensions")
     module("networking").dependsOn("core", "events")
     module("extensions").dependsOn("core")
-    module("fluids").dependsOn("core")
+    module("fluids").dependsOn("core", "extensions", "registry")
 }
 
 System.out.println(buildSrc.module("annotations").transitiveDependencies)

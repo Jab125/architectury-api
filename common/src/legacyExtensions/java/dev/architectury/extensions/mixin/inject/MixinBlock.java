@@ -17,12 +17,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin.inject;
+package dev.architectury.extensions.mixin.inject;
 
-import dev.architectury.extensions.injected.InjectedEntityTypeExtension;
-import net.minecraft.world.entity.EntityType;
+import dev.architectury.extensions.injected.InjectedBlockExtension;
+import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(EntityType.class)
-public class MixinEntityType implements InjectedEntityTypeExtension {
+@Mixin(Block.class)
+public class MixinBlock implements InjectedBlockExtension {
 }

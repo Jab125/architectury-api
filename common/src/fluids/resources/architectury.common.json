@@ -1,0 +1,10 @@
+{
+    "injected_interfaces": {
+        "net/minecraft/class_3611": [
+            "dev/architectury/extensions/injected/fluid/InjectedFluidExtension"
+        ],
+        "net/minecraft/class_2404": [
+            "dev/architectury/extensions/injected/fluid/InjectedLiquidBlockExtension"
+        ]
+    }
+}

@@ -20,6 +20,7 @@
 package dev.architectury.core.fluid;
 
 import com.google.common.base.Suppliers;
+import dev.architectury.extensions.injected.fluid.InjectedFluidExtension;
 import dev.architectury.fluid.FluidStack;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.Util;
@@ -67,7 +68,7 @@ public class SimpleArchitecturyFluidAttributes implements ArchitecturyFluidAttri
     private SoundEvent fillSound = SoundEvents.BUCKET_FILL;
     @Nullable
     private SoundEvent emptySound = SoundEvents.BUCKET_EMPTY;
-    private final Supplier<String> defaultTranslationKey = Suppliers.memoize(() -> Util.makeDescriptionId("fluid", getSourceFluid().arch$registryName()));
+    private final Supplier<String> defaultTranslationKey = Suppliers.memoize(() -> Util.makeDescriptionId("fluid", ((InjectedFluidExtension) getSourceFluid()).arch$registryName()));
     
     public static SimpleArchitecturyFluidAttributes ofSupplier(Supplier<? extends Supplier<? extends Fluid>> flowingFluid, Supplier<? extends Supplier<? extends Fluid>> sourceFluid) {
         return of(() -> flowingFluid.get().get(), () -> sourceFluid.get().get());

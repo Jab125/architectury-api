@@ -17,10 +17,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin.inject;
+package dev.architectury.extensions.mixin.inject;
 
 import dev.architectury.extensions.injected.InjectedItemPropertiesExtension;
-import dev.architectury.impl.ItemPropertiesExtensionImpl;
+import dev.architectury.extensions.impl.ItemPropertiesExtensionImpl;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.resources.ResourceKey;
@@ -44,12 +44,12 @@ public class MixinItemProperties implements InjectedItemPropertiesExtension, Ite
         return (Item.Properties) (Object) this;
     }
     
-//    @Override
-//    public Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
-//        this.tab = null;
-//        this.tabSupplier = tab;
-//        return (Item.Properties) (Object) this;
-//    }
+    @Override
+    public Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
+        this.tab = null;
+        this.tabSupplier = tab;
+        return (Item.Properties) (Object) this;
+    }
     
     @Override
     public Item.Properties arch$tab(ResourceKey<CreativeModeTab> tab) {

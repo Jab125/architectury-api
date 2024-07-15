@@ -17,12 +17,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin.inject;
+package dev.architectury.extensions.impl;
 
-import dev.architectury.extensions.injected.InjectedFoodPropertiesBuilderExtension;
-import net.minecraft.world.food.FoodProperties;
-import org.spongepowered.asm.mixin.Mixin;
+import dev.architectury.registry.registries.DeferredSupplier;
+import net.minecraft.world.item.CreativeModeTab;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
-@Mixin(FoodProperties.Builder.class)
-public class MixinFoodPropertiesBuilder implements InjectedFoodPropertiesBuilderExtension {
+@ApiStatus.Internal
+public interface ItemPropertiesExtensionImpl {
+    @Nullable
+    CreativeModeTab arch$getTab();
+    
+    @Nullable
+    DeferredSupplier<CreativeModeTab> arch$getTabSupplier();
 }

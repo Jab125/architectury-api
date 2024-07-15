@@ -17,12 +17,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin.inject;
+package dev.architectury.extensions.injected.fluid;
 
-import dev.architectury.extensions.injected.InjectedFluidExtension;
+import dev.architectury.extensions.injected.registry.InjectedRegistryEntryExtension;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.material.Fluid;
-import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(Fluid.class)
-public class MixinFluid implements InjectedFluidExtension {
+public interface InjectedFluidExtension extends InjectedRegistryEntryExtension<Fluid> {
+    @Override
+    default Holder<Fluid> arch$holder() {
+        return ((Fluid) this).builtInRegistryHolder();
+    }
 }

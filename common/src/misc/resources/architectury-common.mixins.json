@@ -6,14 +6,14 @@
   "client": [
   ],
   "mixins": [
-    "inject.MixinBlock",
-    "inject.MixinBucketItem",
-    "inject.MixinEntityType",
-    "inject.MixinFluid",
-    "inject.MixinFoodPropertiesBuilder",
-    "inject.MixinItem",
-    "inject.MixinItemProperties",
-    "inject.MixinLiquidBlock",
+    "dev.architectury.extensions.mixin.inject.MixinBlock",
+    "dev.architectury.extensions.mixin.inject.MixinBucketItem",
+    "dev.architectury.extensions.mixin.inject.MixinEntityType",
+    "dev.architectury.extensions.mixin.inject.MixinFluid",
+    "dev.architectury.extensions.mixin.inject.MixinFoodPropertiesBuilder",
+    "dev.architectury.extensions.mixin.inject.MixinItem",
+    "dev.architectury.extensions.mixin.inject.MixinItemProperties",
+    "dev.architectury.extensions.mixin.inject.MixinLiquidBlock",
     "MixinLightningBolt"
   ],
   "injectors": {

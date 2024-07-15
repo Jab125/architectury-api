@@ -17,10 +17,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin.inject;
+package dev.architectury.extensions.mixin.inject;
 
 import dev.architectury.extensions.injected.InjectedItemExtension;
-import dev.architectury.impl.ItemPropertiesExtensionImpl;
+import dev.architectury.extensions.impl.ItemPropertiesExtensionImpl;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.world.item.CreativeModeTab;
