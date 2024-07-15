@@ -14,7 +14,9 @@
   },
   "license": "LGPL-3",
   "environment": "*",
-  "mixins": [],
+  "mixins": [
+    "architectury-events.mixins.json"
+  ],
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {

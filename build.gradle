@@ -39,6 +39,7 @@ buildSrc {
 
     module("events")
             .description("Events for client and common scenarios.")
+            .mixin("architectury-events.mixins.json")
             .dependsOn("core", 'hooks')
 
     module("hooks")

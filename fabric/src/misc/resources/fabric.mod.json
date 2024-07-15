@@ -22,8 +22,8 @@
   "icon": "icon.png",
   "depends": {
     "minecraft": "~1.20.6-",
-    "architectury_networking": "${version}",
     "architectury_registry": "${version}",
+    "architectury_networking": "${version}",
     "fabric-api": "\u003e\u003d0.99.0",
     "fabricloader": "\u003e\u003d0.15.11",
     "architectury_extensions": "${version}",

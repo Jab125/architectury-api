@@ -17,7 +17,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.mixin;
+package dev.architectury.event.mixin;
 
 import dev.architectury.event.events.common.LightningEvent;
 import net.minecraft.world.entity.Entity;
