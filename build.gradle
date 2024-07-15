@@ -18,6 +18,9 @@ plugins {
 buildSrc {
     module("core")
             .description("Core module of Architectury API.")
+            .entrypoint("main", "dev.architectury.utils.fabric.GameInstanceImpl::init")
+            .entrypoint("server", "dev.architectury.init.fabric.ArchitecturyServer::init")
+            .entrypoint("client", "dev.architectury.init.fabric.ArchitecturyClient::init")
             .entrypoint("modmenu", "dev.architectury.platform.compat.fabric.ModMenuCompatibility")
             .dependsOn("annotations")
 

@@ -16,8 +16,17 @@
   "environment": "*",
   "mixins": [],
   "entrypoints": {
+    "server": [
+      "dev.architectury.init.fabric.ArchitecturyServer::init"
+    ],
     "modmenu": [
       "dev.architectury.platform.compat.fabric.ModMenuCompatibility"
+    ],
+    "client": [
+      "dev.architectury.init.fabric.ArchitecturyClient::init"
+    ],
+    "main": [
+      "dev.architectury.utils.fabric.GameInstanceImpl::init"
     ]
   },
   "icon": "icon.png",
