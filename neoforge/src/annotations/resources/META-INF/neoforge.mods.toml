@@ -6,10 +6,9 @@ license = "GNU LGPLv3"
 [[mods]]
 modId = "architectury_annotations"
 version = "${version}"
-displayName = "Architectury Annotations"
+displayName = "Architectury (annotations)"
 authors = "shedaniel"
 description = '''
-Annotations provided by Architectury API
 '''
 logoFile = "icon.png"
 license = "LGPL-3"

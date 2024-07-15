@@ -4,24 +4,24 @@ issueTrackerURL = "https://github.com/shedaniel/architectury/issues"
 license = "GNU LGPLv3"
 
 [[mods]]
-modId = "architectury_core"
+modId = "architectury_registry"
 version = "${version}"
-displayName = "Architectury (core)"
+displayName = "Architectury (registry)"
 authors = "shedaniel"
 description = '''
-Core module of Architectury API.
+Provides abstractions over loader-specific registration.
 '''
 logoFile = "icon.png"
 license = "LGPL-3"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_registry]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.20.6,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_registry]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.6.98-beta,)"

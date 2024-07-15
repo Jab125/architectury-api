@@ -4,24 +4,24 @@ issueTrackerURL = "https://github.com/shedaniel/architectury/issues"
 license = "GNU LGPLv3"
 
 [[mods]]
-modId = "architectury_core"
+modId = "architectury_registrybiomes"
 version = "${version}"
-displayName = "Architectury (core)"
+displayName = "Architectury (registryBiomes)"
 authors = "shedaniel"
 description = '''
-Core module of Architectury API.
+Split off of Architectury (registry) due to dependencies.
 '''
 logoFile = "icon.png"
 license = "LGPL-3"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_registrybiomes]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.20.6,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_registrybiomes]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.6.98-beta,)"

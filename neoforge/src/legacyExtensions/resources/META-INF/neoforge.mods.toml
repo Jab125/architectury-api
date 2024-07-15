@@ -4,26 +4,29 @@ issueTrackerURL = "https://github.com/shedaniel/architectury/issues"
 license = "GNU LGPLv3"
 
 [[mods]]
-modId = "architectury_core"
+modId = "architectury_legacyextensions"
 version = "${version}"
-displayName = "Architectury (core)"
+displayName = "Architectury (legacyExtensions)"
 authors = "shedaniel"
 description = '''
-Core module of Architectury API.
+Deprecated interface injections.
 '''
 logoFile = "icon.png"
 license = "LGPL-3"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_legacyextensions]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.20.6,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.architectury_core]]
+[[dependencies.architectury_legacyextensions]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.6.98-beta,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "architectury-legacyExtensions.mixins.json"

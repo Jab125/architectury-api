@@ -6,10 +6,10 @@ license = "GNU LGPLv3"
 [[mods]]
 modId = "architectury_misc"
 version = "${version}"
-displayName = "Architectury Misc"
+displayName = "Architectury (misc)"
 authors = "shedaniel"
 description = '''
-A intermediary api aimed to ease developing multiplatform mods.
+Miscellaneous APIs that have not been sorted into a module.
 '''
 logoFile = "icon.png"
 license = "LGPL-3"
@@ -30,6 +30,3 @@ side = "BOTH"
 
 [[mixins]]
 config = "architectury.mixins.json"
-
-[[mixins]]
-config = "architectury-common.mixins.json"
