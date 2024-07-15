@@ -19,16 +19,12 @@
 
 package dev.architectury.extensions.injected;
 
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
+import dev.architectury.hooks.fluid.LiquidBlockHooks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.material.FlowingFluid;
 
-public interface InjectedRegistryEntryExtension<T> {
-    Holder<T> arch$holder();
-    
-    @Nullable
-    default ResourceLocation arch$registryName() {
-        return arch$holder().unwrapKey().map(ResourceKey::location).orElse(null);
+public interface InjectedLiquidBlockExtension {
+    default FlowingFluid arch$getFluid() {
+        return LiquidBlockHooks.getFluid((LiquidBlock) this);
     }
 }

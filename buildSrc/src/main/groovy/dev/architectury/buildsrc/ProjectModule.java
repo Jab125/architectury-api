@@ -14,6 +14,13 @@ public record ProjectModule(BuildSrcExtension extension, String name, Set<Projec
         return dependantModule;
     }
     
+    public void dependsOn(String... modules) {
+        for (String module : modules) {
+            ProjectModule dependantModule = extension.module(module);
+            dependencies.add(dependantModule);
+        }
+    }
+    
     public HashSet<ProjectModule> getTransitiveDependencies() {
         HashSet<ProjectModule> objects = new HashSet<>(dependencies);
         dependencies.forEach(o -> objects.addAll(o.getTransitiveDependencies()));

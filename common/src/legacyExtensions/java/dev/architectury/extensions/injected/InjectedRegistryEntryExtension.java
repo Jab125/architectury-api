@@ -19,25 +19,17 @@
 
 package dev.architectury.extensions.injected;
 
-//import dev.architectury.registry.registries.DeferredSupplier;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import org.jetbrains.annotations.ApiStatus;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
-public interface InjectedItemPropertiesExtension {
-    @ApiStatus.Experimental
-    default Item.Properties arch$tab(CreativeModeTab tab) {
-        throw new UnsupportedOperationException();
-    }
+@Deprecated
+public interface InjectedRegistryEntryExtension<T> extends dev.architectury.extensions.injected.registry.InjectedRegistryEntryExtension<T> {
+    Holder<T> arch$holder();
     
-//    @ApiStatus.Experimental
-//    default Item.Properties arch$tab(DeferredSupplier<CreativeModeTab> tab) {
-//        throw new UnsupportedOperationException();
-//    }
-    
-    @ApiStatus.Experimental
-    default Item.Properties arch$tab(ResourceKey<CreativeModeTab> tab) {
-        throw new UnsupportedOperationException();
+    @Nullable
+    default ResourceLocation arch$registryName() {
+        return arch$holder().unwrapKey().map(ResourceKey::location).orElse(null);
     }
 }

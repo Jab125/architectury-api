@@ -19,13 +19,15 @@
 
 package dev.architectury.extensions.injected;
 
-//import dev.architectury.hooks.fluid.FluidBucketHooks;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.level.material.Fluid;
+import dev.architectury.hooks.item.food.FoodPropertiesHooks;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
 
-public interface InjectedBucketItemExtension {
-    default Fluid arch$getFluid() {
-        return null;
-        //return FluidBucketHooks.getFluid((BucketItem) this);
+import java.util.function.Supplier;
+
+public interface InjectedFoodPropertiesBuilderExtension {
+    default FoodProperties.Builder arch$effect(Supplier<? extends MobEffectInstance> effectSupplier, float chance) {
+        FoodPropertiesHooks.effect((FoodProperties.Builder) this, effectSupplier, chance);
+        return (FoodProperties.Builder) this;
     }
 }
