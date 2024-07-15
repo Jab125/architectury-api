@@ -8,6 +8,7 @@ import dev.architectury.transformer.shadowed.impl.com.google.gson.GsonBuilder;
 import org.gradle.api.Project;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MetadataGeneration {
@@ -25,7 +26,7 @@ public class MetadataGeneration {
         if (loader.equals("fabric")) {
             FabricModJsonBuilder fabricModJsonBuilder = new FabricModJsonBuilder();
             fabricModJsonBuilder.schemaVersion(1);
-            fabricModJsonBuilder.id("architectury_" + module.name());
+            fabricModJsonBuilder.id("architectury_" + module.name().toLowerCase(Locale.ROOT));
             fabricModJsonBuilder.version("${version}");
             fabricModJsonBuilder.name("Architectury (" + module.name() + ")");
             fabricModJsonBuilder.description(module.description().get());
@@ -41,7 +42,7 @@ public class MetadataGeneration {
             {
                 HashMap<String, String> objectObjectHashMap = new HashMap<>();
                 for (ProjectModule dependency : module.dependencies()) {
-                    objectObjectHashMap.put("architectury_" + dependency.name(), "${version}");
+                    objectObjectHashMap.put("architectury_" + dependency.name().toLowerCase(Locale.ROOT), "${version}");
                 }
                 fabricModJsonBuilder.depends(objectObjectHashMap);
             }

@@ -18,12 +18,12 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "architectury_networking": "${version}",
     "architectury_registry": "${version}",
+    "architectury_networking": "${version}",
     "architectury_fluids": "${version}",
     "architectury_extensions": "${version}",
-    "architectury_events": "${version}",
     "architectury_hooks": "${version}",
+    "architectury_events": "${version}",
     "architectury_core": "${version}"
   },
   "breaks": {}
