@@ -18,6 +18,7 @@ plugins {
 buildSrc {
     module("core")
             .description("Core module of Architectury API.")
+            .entrypoint("modmenu", "dev.architectury.platform.compat.fabric.ModMenuCompatibility")
             .dependsOn("annotations")
 
     module("misc")
