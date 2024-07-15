@@ -5,7 +5,7 @@ import java.util.Map;
 
 public record NeoForgeModsToml(String modLoader,
                                String loaderVersion,
-                               String issueTrackerUrl,
+                               String issueTrackerURL,
                                String license,
                                List<Mod> mods,
                                Map<String, List<Dependency>> dependencies,
@@ -32,7 +32,7 @@ public record NeoForgeModsToml(String modLoader,
         StringBuilder builder = new StringBuilder();
         builder.append("modLoader = \"" + modLoader + "\"\n");
         builder.append("loaderVersion = \"" + loaderVersion + "\"\n");
-        builder.append("issueTrackerUrl = \"" + issueTrackerUrl + "\"\n");
+        builder.append("issueTrackerURL = \"" + issueTrackerURL + "\"\n");
         builder.append("license = \"" + license + "\"\n");
         
         for (Mod mod : mods) {
@@ -46,6 +46,7 @@ public record NeoForgeModsToml(String modLoader,
             mod.description.lines().forEach(line -> {
                 builder.append(line + "\n");
             });
+            builder.append("'''\n");
             builder.append("logoFile = \"" + mod.logoFile + "\"\n");
             builder.append("license = \"" + mod.license + "\"\n");
         }
@@ -68,6 +69,9 @@ public record NeoForgeModsToml(String modLoader,
             builder.append("config = \"" + mixin.config + "\"\n");
         }
         
+        if (builder.charAt(builder.length() - 1) == '\n') {
+            builder.deleteCharAt(builder.length() - 1);
+        }
         return builder.toString();
     }
 }

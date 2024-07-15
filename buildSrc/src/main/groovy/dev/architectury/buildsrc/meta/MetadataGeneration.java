@@ -69,7 +69,7 @@ public class MetadataGeneration {
             List<NeoForgeModsToml.Dependency> moduleDepList = dependencies.computeIfAbsent("architectury_" + module.name().toLowerCase(Locale.ROOT), a -> new ArrayList<>());
             moduleDepList.add(new NeoForgeModsToml.Dependency("minecraft", "required", "[1.20.6,)", "NONE", "BOTH"));
             moduleDepList.add(new NeoForgeModsToml.Dependency("neoforge", "required", "[20.6.98-beta,)", "NONE", "BOTH"));
-            new NeoForgeModsToml(
+            return  new NeoForgeModsToml(
                     "javafml",
                     "[1,)",
                     "https://github.com/shedaniel/architectury/issues",
@@ -85,7 +85,7 @@ public class MetadataGeneration {
                     )),
                     dependencies,
                     module.getMixinsFor("neoforge").stream().map(NeoForgeModsToml.Mixin::new).toList()
-            );
+            ).serialize();
         }
         return "error!";
     }
