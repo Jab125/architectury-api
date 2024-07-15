@@ -26,7 +26,7 @@ buildSrc {
 
     module("misc")
             .description("Miscellaneous APIs that have not been sorted into a module.")
-            .mixin("fabric:architectury.mixins.json")
+            .mixin("fabric:architectury.mixins.json", "neoforge:architectury.mixins.json")
             .dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
 
     module("legacyItems")
