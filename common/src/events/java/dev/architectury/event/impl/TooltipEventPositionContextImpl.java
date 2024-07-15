@@ -17,30 +17,40 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.impl;
+package dev.architectury.event.impl;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.ApiStatus;
 
-public class TooltipAdditionalContextsImpl implements ClientTooltipEvent.AdditionalContexts {
-    private static final ThreadLocal<TooltipAdditionalContextsImpl> INSTANCE_LOCAL = ThreadLocal.withInitial(TooltipAdditionalContextsImpl::new);
+@ApiStatus.Internal
+public class TooltipEventPositionContextImpl implements ClientTooltipEvent.PositionContext {
+    private int tooltipX;
+    private int tooltipY;
     
-    public static ClientTooltipEvent.AdditionalContexts get() {
-        return INSTANCE_LOCAL.get();
-    }
-    
-    @Nullable
-    private ItemStack item;
-    
-    @Override
-    @Nullable
-    public ItemStack getItem() {
-        return item;
+    public TooltipEventPositionContextImpl reset(int tooltipX, int tooltipY) {
+        this.tooltipX = tooltipX;
+        this.tooltipY = tooltipY;
+        
+        return this;
     }
     
     @Override
-    public void setItem(@Nullable ItemStack item) {
-        this.item = item;
+    public int getTooltipX() {
+        return tooltipX;
+    }
+    
+    @Override
+    public void setTooltipX(int x) {
+        this.tooltipX = x;
+    }
+    
+    @Override
+    public int getTooltipY() {
+        return tooltipY;
+    }
+    
+    @Override
+    public void setTooltipY(int y) {
+        this.tooltipY = y;
     }
 }

@@ -21,7 +21,7 @@ package dev.architectury.mixin.fabric.client;
 
 import dev.architectury.event.events.client.ClientGuiEvent;
 import dev.architectury.hooks.client.screen.ScreenAccess;
-import dev.architectury.impl.ScreenAccessImpl;
+import dev.architectury.hooks.impl.ScreenAccessImpl;
 import dev.architectury.impl.fabric.ScreenInputDelegate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.events.GuiEventListener;

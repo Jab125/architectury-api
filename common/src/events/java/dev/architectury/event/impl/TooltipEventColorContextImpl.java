@@ -17,7 +17,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.impl;
+package dev.architectury.event.impl;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
 import org.jetbrains.annotations.ApiStatus;
