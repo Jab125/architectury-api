@@ -2,12 +2,9 @@ package dev.architectury.buildsrc;
 
 import org.codehaus.groovy.runtime.StringGroovyMethods;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public record ProjectModule(BuildSrcExtension extension, String name, Reference<String> description, Set<String> mixins, Set<ProjectModule> dependencies) {
+public record ProjectModule(BuildSrcExtension extension, String name, Reference<String> description, Set<String> mixins, /* @FabricOnly */Map<String, List<String>> entrypoints, Set<ProjectModule> dependencies) {
     public ProjectModule dependsOn(String module) {
         ProjectModule dependantModule = extension.module(module);
         dependencies.add(dependantModule);
@@ -19,6 +16,11 @@ public record ProjectModule(BuildSrcExtension extension, String name, Reference<
             ProjectModule dependantModule = extension.module(module);
             dependencies.add(dependantModule);
         }
+        return this;
+    }
+    
+    public ProjectModule entrypoint(String entrypoint, String... classes) {
+        entrypoints.computeIfAbsent(entrypoint, a -> new ArrayList<>()).addAll(List.of(classes));
         return this;
     }
     

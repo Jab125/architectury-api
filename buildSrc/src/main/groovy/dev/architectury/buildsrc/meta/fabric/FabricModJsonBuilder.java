@@ -2,6 +2,7 @@ package dev.architectury.buildsrc.meta.fabric;
 
 import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonObject;
 
+import java.util.List;
 import java.util.Map;
 
 public class FabricModJsonBuilder {
@@ -15,7 +16,7 @@ public class FabricModJsonBuilder {
 	private String license;
 	private String environment;
 	private String[] mixins;
-	private Map<String, String[]> entrypoints;
+	private Map<String, List<String>> entrypoints;
 	private String icon;
 	private Map<String, String> depends;
 	private Map<String, String> breaks;
@@ -71,7 +72,7 @@ public class FabricModJsonBuilder {
 		return this;
 	}
 
-	public FabricModJsonBuilder entrypoints(Map<String, String[]> entrypoints) {
+	public FabricModJsonBuilder entrypoints(Map<String, List<String>> entrypoints) {
 		this.entrypoints = entrypoints;
 		return this;
 	}

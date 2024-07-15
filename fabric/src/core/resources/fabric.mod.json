@@ -15,7 +15,11 @@
   "license": "LGPL-3",
   "environment": "*",
   "mixins": [],
-  "entrypoints": {},
+  "entrypoints": {
+    "modmenu": [
+      "dev.architectury.platform.compat.fabric.ModMenuCompatibility"
+    ]
+  },
   "icon": "icon.png",
   "depends": {
     "minecraft": "~1.20.6-",

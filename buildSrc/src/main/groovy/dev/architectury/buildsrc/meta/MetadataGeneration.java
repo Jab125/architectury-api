@@ -41,7 +41,7 @@ public class MetadataGeneration {
             fabricModJsonBuilder.license("LGPL-3");
             fabricModJsonBuilder.environment("*");
             fabricModJsonBuilder.mixins(module.getMixinsFor(loader).toArray(String[]::new));
-            fabricModJsonBuilder.entrypoints(Map.of());
+            fabricModJsonBuilder.entrypoints(module.entrypoints());
             fabricModJsonBuilder.icon("icon.png");
             {
                 HashMap<String, String> objectObjectHashMap = new HashMap<>();

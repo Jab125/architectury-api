@@ -2,6 +2,7 @@ package dev.architectury.buildsrc.meta.fabric;
 
 import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonObject;
 
+import java.util.List;
 import java.util.Map;
 
 public record FabricModJson(int schemaVersion,
@@ -14,7 +15,7 @@ public record FabricModJson(int schemaVersion,
                             String license,
                             String environment,
                             String[] mixins,
-                            Map<String, String[]> entrypoints,
+                            Map<String, List<String>> entrypoints,
                             String icon,
                             Map<String, String> depends,
                             Map<String, String> breaks,
