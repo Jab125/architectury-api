@@ -14,7 +14,10 @@
   },
   "license": "License",
   "environment": "*",
-  "mixins": [],
+  "mixins": [
+      "architectury-common.mixins.json",
+      "architectury.mixins.json"
+  ],
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {

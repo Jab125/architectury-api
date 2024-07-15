@@ -14,7 +14,9 @@
   },
   "license": "License",
   "environment": "*",
-  "mixins": [],
+  "mixins": [
+      "architectury-legacyExtensions.mixins.json"
+  ],
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
