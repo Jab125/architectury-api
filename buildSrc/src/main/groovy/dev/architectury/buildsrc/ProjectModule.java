@@ -43,6 +43,7 @@ public record ProjectModule(BuildSrcExtension extension, String name, Reference<
                 }
             }
         }
+        return strings;
     }
     
     public HashSet<ProjectModule> getTransitiveDependencies() {

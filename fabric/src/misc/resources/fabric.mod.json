@@ -15,20 +15,24 @@
   "license": "License",
   "environment": "*",
   "mixins": [
-      "architectury.mixins.json",
-      "architectury-common.mixins.json"
+    "architectury.mixins.json",
+    "architectury-common.mixins.json"
   ],
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-      "fabricloader": ">=0.15",
-    "architectury_registry": "${version}",
+    "minecraft": "~1.20.6-",
     "architectury_networking": "${version}",
+    "architectury_registry": "${version}",
+    "fabric-api": "\u003e\u003d0.99.0",
+    "fabricloader": "\u003e\u003d0.15.11",
     "architectury_fluids": "${version}",
     "architectury_extensions": "${version}",
     "architectury_hooks": "${version}",
     "architectury_events": "${version}",
     "architectury_core": "${version}"
   },
-  "breaks": {}
+  "breaks": {
+    "optifabric": "\u003c1.13.0"
+  }
 }

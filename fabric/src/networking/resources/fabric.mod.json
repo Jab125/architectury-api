@@ -18,8 +18,13 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
+    "minecraft": "~1.20.6-",
+    "fabric-api": "\u003e\u003d0.99.0",
+    "fabricloader": "\u003e\u003d0.15.11",
     "architectury_events": "${version}",
     "architectury_core": "${version}"
   },
-  "breaks": {}
+  "breaks": {
+    "optifabric": "\u003c1.13.0"
+  }
 }
