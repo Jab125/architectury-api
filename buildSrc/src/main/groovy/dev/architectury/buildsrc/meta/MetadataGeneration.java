@@ -5,6 +5,8 @@ import dev.architectury.buildsrc.meta.fabric.FabricModJson;
 import dev.architectury.buildsrc.meta.fabric.FabricModJsonBuilder;
 import dev.architectury.plugin.ModLoader;
 import dev.architectury.transformer.shadowed.impl.com.google.gson.GsonBuilder;
+import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonArray;
+import dev.architectury.transformer.shadowed.impl.com.google.gson.JsonObject;
 import org.gradle.api.Project;
 
 import java.util.HashMap;
@@ -52,6 +54,14 @@ public class MetadataGeneration {
                 fabricModJsonBuilder.depends(objectObjectHashMap);
             }
             fabricModJsonBuilder.breaks(Map.of("optifabric", "<1.13.0"));
+            JsonObject jsonObject = new JsonObject();
+            JsonObject modmenu = new JsonObject();
+            JsonArray badges = new JsonArray();
+            badges.add("library");
+            modmenu.add("badges", badges);
+            modmenu.addProperty("parent", "architectury");
+            jsonObject.add("modmenu", modmenu);
+            fabricModJsonBuilder.custom(jsonObject);
             return new GsonBuilder().setPrettyPrinting().create().toJson(fabricModJsonBuilder);
         }
         return "error!";
