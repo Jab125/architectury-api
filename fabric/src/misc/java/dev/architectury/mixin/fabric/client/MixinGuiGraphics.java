@@ -20,8 +20,8 @@
 package dev.architectury.mixin.fabric.client;
 
 import dev.architectury.event.events.client.ClientTooltipEvent;
-import dev.architectury.impl.TooltipEventColorContextImpl;
-import dev.architectury.impl.TooltipEventPositionContextImpl;
+import dev.architectury.event.impl.TooltipEventColorContextImpl;
+import dev.architectury.event.impl.TooltipEventPositionContextImpl;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;

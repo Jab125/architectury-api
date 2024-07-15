@@ -19,7 +19,7 @@
 
 package dev.architectury.mixin.fabric.client;
 
-import dev.architectury.impl.TooltipEventColorContextImpl;
+import dev.architectury.event.impl.TooltipEventColorContextImpl;
 import net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
