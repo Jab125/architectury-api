@@ -17,21 +17,13 @@ plugins {
 
 buildSrc {
     module("core").dependsOn("annotations")
-    module("misc").dependsOn("core")
-    module("misc").dependsOn("networking")
-    module("misc").dependsOn("events")
-    module("misc").dependsOn("hooks")
-    module("legacyExtensions").dependsOn("registry", "extensions", "hooks", "misc")
-    module("misc").dependsOn("extensions")
-    module("misc").dependsOn("registry")
+    module("misc").dependsOn("core", "networking", "events", "hooks", "extensions", "registry")
+    module("legacyExtensions").dependsOn("registry", "extensions", "hooks")
     module("registry").dependsOn("core")
     module("registryBiomes").dependsOn("hooks")
-    module("events").dependsOn("core")
-    module("events").dependsOn("hooks")
-    module("hooks").dependsOn("core")
-    module("hooks").dependsOn("extensions")
-    module("networking").dependsOn("core")
-    module("networking").dependsOn("events")
+    module("events").dependsOn("core", 'hooks')
+    module("hooks").dependsOn("core", "extensions")
+    module("networking").dependsOn("core", "events")
     module("extensions").dependsOn("core")
 }
 
