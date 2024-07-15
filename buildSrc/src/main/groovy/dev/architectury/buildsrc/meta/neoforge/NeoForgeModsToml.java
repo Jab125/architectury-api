@@ -65,7 +65,7 @@ public record NeoForgeModsToml(String modLoader,
         
         for (Mixin mixin : mixins) {
             builder.append("\n");
-            builder.append("[[mixins]]");
+            builder.append("[[mixins]]\n");
             builder.append("config = \"" + mixin.config + "\"\n");
         }
         
