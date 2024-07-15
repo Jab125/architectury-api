@@ -19,7 +19,6 @@
 
 package dev.architectury.registry.client.particle;
 
-import dev.architectury.event.events.client.ClientLifecycleEvent;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -35,7 +34,7 @@ import java.util.List;
 /**
  * A utility class for registering custom {@link ParticleProvider}s for particle types.
  * <p>
- * This class's methods should be invoked <b>before</b> {@link ClientLifecycleEvent#CLIENT_SETUP},
+ * This class's methods should be invoked <b>before</b> {@link dev.architectury.event.events.client.ClientLifecycleEvent#CLIENT_SETUP},
  * as doing so afterwards will result in the providers not being registered properly on Forge, causing crashes on startup.
  * <p>
  * Generally speaking, you should either listen to the registration of your particle type yourself and use either

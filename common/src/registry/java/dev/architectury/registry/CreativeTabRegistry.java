@@ -19,7 +19,6 @@
 
 package dev.architectury.registry;
 
-import dev.architectury.extensions.injected.InjectedItemPropertiesExtension;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.network.chat.Component;
@@ -38,7 +37,7 @@ import java.util.stream.Stream;
 /**
  * Registry for creating or modifying creative tabs.
  *
- * @see InjectedItemPropertiesExtension#arch$tab(CreativeModeTab) to add an item to a creative tab easily
+ * @see dev.architectury.extensions.injected.InjectedItemPropertiesExtension#arch$tab(CreativeModeTab) to add an item to a creative tab easily
  */
 public final class CreativeTabRegistry {
     private CreativeTabRegistry() {

@@ -20,7 +20,7 @@
 package dev.architectury.registry.registries;
 
 import com.google.common.base.Suppliers;
-import dev.architectury.impl.RegistrySupplierImpl;
+import dev.architectury.registry.impl.RegistrySupplierImpl;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
