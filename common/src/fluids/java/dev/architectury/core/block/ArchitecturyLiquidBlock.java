@@ -19,22 +19,13 @@
 
 package dev.architectury.core.block;
 
-import dev.architectury.platform.Platform;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 
 import java.util.function.Supplier;
 
-public class ArchitecturyLiquidBlock extends LiquidBlock {
+@Deprecated
+public class ArchitecturyLiquidBlock extends dev.architectury.core.block.fluid.ArchitecturyLiquidBlock {
     public ArchitecturyLiquidBlock(Supplier<? extends FlowingFluid> fluid, Properties properties) {
-        super(checkPlatform(fluid).get(), properties);
-    }
-    
-    private static <T> T checkPlatform(T obj) {
-        if (Platform.isForge()) {
-            throw new IllegalStateException("This class should've been replaced on Forge!");
-        }
-        
-        return obj;
+        super(fluid, properties);
     }
 }
