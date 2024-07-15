@@ -48,7 +48,7 @@ public abstract class BuildSrcExtension {
 
     ProjectModule createModule(String name) {
         if (getProject() != getProject().rootProject) throw new IllegalAccessException()
-        return new ProjectModule(get(getProject()), name, new Reference<String>(""), new HashSet<ProjectModule>())
+        return new ProjectModule(get(getProject()), name, new Reference<String>(""), new HashSet<String>(), new HashSet<ProjectModule>())
     }
 
     void commonSetup() {

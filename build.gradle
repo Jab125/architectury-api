@@ -17,8 +17,8 @@ plugins {
 
 buildSrc {
     module("core").dependsOn("annotations")
-    module("misc").dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
-    module("legacyExtensions").dependsOn("registry", "extensions", "hooks", "fluids")
+    module("misc").mixin("fabric:architectury.mixins.json", "architectury-common.mixins.json").dependsOn("core", "networking", "events", "hooks", "extensions", "registry", "fluids")
+    module("legacyExtensions").mixin("architectury-legacyExtensions.mixins.json").dependsOn("registry", "extensions", "hooks", "fluids")
     module("registry").dependsOn("core")
     module("registryBiomes").dependsOn("hooks")
     module("events").dependsOn("core", 'hooks')

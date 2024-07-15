@@ -36,17 +36,22 @@ public class MetadataGeneration {
             ));
             fabricModJsonBuilder.license("License");
             fabricModJsonBuilder.environment("*");
-            fabricModJsonBuilder.mixins(new String[]{});
+            fabricModJsonBuilder.mixins(module.getMixinsFor(loader).toArray(String[]::new));
             fabricModJsonBuilder.entrypoints(Map.of());
             fabricModJsonBuilder.icon("icon.png");
             {
                 HashMap<String, String> objectObjectHashMap = new HashMap<>();
+                
                 for (ProjectModule dependency : module.dependencies()) {
                     objectObjectHashMap.put("architectury_" + dependency.name().toLowerCase(Locale.ROOT), "${version}");
                 }
+                
+                objectObjectHashMap.put("fabricloader", ">=0.15.11");
+                objectObjectHashMap.put("minecraft", "~1.20.6-");
+                objectObjectHashMap.put("fabric-api", ">=0.99.0");
                 fabricModJsonBuilder.depends(objectObjectHashMap);
             }
-            fabricModJsonBuilder.breaks(Map.of());
+            fabricModJsonBuilder.breaks(Map.of("optifabric", "<1.13.0"));
             return new GsonBuilder().setPrettyPrinting().create().toJson(fabricModJsonBuilder);
         }
         return "error!";

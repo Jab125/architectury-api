@@ -7,17 +7,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public record ProjectModule(BuildSrcExtension extension, String name, Reference<String> description, Set<ProjectModule> dependencies) {
+public record ProjectModule(BuildSrcExtension extension, String name, Reference<String> description, Set<String> mixins, Set<ProjectModule> dependencies) {
     public ProjectModule dependsOn(String module) {
         ProjectModule dependantModule = extension.module(module);
         dependencies.add(dependantModule);
-        return dependantModule;
+        return this;
     }
     
-    public void dependsOn(String... modules) {
+    public ProjectModule dependsOn(String... modules) {
         for (String module : modules) {
             ProjectModule dependantModule = extension.module(module);
             dependencies.add(dependantModule);
+        }
+        return this;
+    }
+    
+    public ProjectModule description(String description) {
+        this.description.set(description);
+        return this;
+    }
+    
+    public ProjectModule mixin(String... mixins) {
+        this.mixins.addAll(List.of(mixins));
+        return this;
+    }
+    
+    public Set<String> getMixinsFor(String platform) {
+        HashSet<String> strings = new HashSet<>();
+        for (String mixin : mixins) {
+            if (mixin.startsWith(platform + ":")) {
+                strings.add(mixin.substring(platform.length() + 1));
+            } else {
+                if (!mixin.contains(":")) {
+                    strings.add(mixin);
+                }
+            }
         }
     }
     
