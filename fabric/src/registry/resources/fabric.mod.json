@@ -25,5 +25,13 @@
   },
   "breaks": {
     "optifabric": "\u003c1.13.0"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "architectury"
+    }
   }
 }
