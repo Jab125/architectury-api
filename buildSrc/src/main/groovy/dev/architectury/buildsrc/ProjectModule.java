@@ -35,6 +35,7 @@ public record ProjectModule(BuildSrcExtension extension, String name, Reference<
     }
     
     public Set<String> getMixinsFor(String platform) {
+        platform = platform.toLowerCase(Locale.ROOT);
         HashSet<String> strings = new HashSet<>();
         for (String mixin : mixins) {
             if (mixin.startsWith(platform + ":")) {
