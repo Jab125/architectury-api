@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "architectury_core",
+  "id": "architectury_events",
   "version": "${version}",
-  "name": "Architectury (core)",
+  "name": "Architectury (events)",
   "description": "",
   "authors": [
     "shedaniel"
@@ -18,7 +18,8 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "architectury_annotations": "${version}"
+    "architectury_hooks": "${version}",
+    "architectury_core": "${version}"
   },
   "breaks": {}
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "architectury_core",
+  "id": "architectury_hooks",
   "version": "${version}",
-  "name": "Architectury (core)",
+  "name": "Architectury (hooks)",
   "description": "",
   "authors": [
     "shedaniel"
@@ -18,7 +18,8 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "architectury_annotations": "${version}"
+    "architectury_extensions": "${version}",
+    "architectury_core": "${version}"
   },
   "breaks": {}
 }

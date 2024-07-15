@@ -1,35 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "architectury",
+  "id": "architectury_annotations",
   "version": "${version}",
-  "name": "Architectury Annotations",
-  "description": "Annotations provided by Architectury API",
+  "name": "Architectury (annotations)",
+  "description": "",
   "authors": [
     "shedaniel"
   ],
   "contact": {
-    "issues": "https://github.com/architectury/architectury-api/issues",
-    "sources": "https://github.com/architectury/architectury-api",
-    "homepage": "https://architectury.github.io/architectury-documentations/"
+    "issues": "a",
+    "sources": "b",
+    "homepage": "c"
   },
-  "license": "LGPL-3",
+  "license": "License",
   "environment": "*",
-  "mixins": [
-  ],
-  "entrypoints": {
-  },
+  "mixins": [],
+  "entrypoints": {},
   "icon": "icon.png",
-  "depends": {
-    "minecraft": "~1.20.6-",
-    "fabricloader": ">=0.15.11",
-    "fabric-api": ">=0.99.0"
-  },
-  "breaks": {
-    "optifabric": "<1.13.0"
-  },
-  "custom": {
-    "modmenu": {
-      "badges": ["library"]
-    }
-  }
+  "depends": {},
+  "breaks": {}
 }

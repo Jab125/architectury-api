@@ -1,49 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "architectury-misc",
+  "id": "architectury_misc",
   "version": "${version}",
-  "name": "Architectury",
-  "description": "Features that have not been sorted into a module yet",
+  "name": "Architectury (misc)",
+  "description": "",
   "authors": [
     "shedaniel"
   ],
   "contact": {
-    "issues": "https://github.com/architectury/architectury-api/issues",
-    "sources": "https://github.com/architectury/architectury-api",
-    "homepage": "https://architectury.github.io/architectury-documentations/"
+    "issues": "a",
+    "sources": "b",
+    "homepage": "c"
   },
-  "license": "LGPL-3",
+  "license": "License",
   "environment": "*",
-  "mixins": [
-    "architectury-common.mixins.json",
-    "architectury.mixins.json"
-  ],
-  "entrypoints": {
-    "main": [
-      "dev.architectury.platform.fabric.GameInstanceImpl::init"
-    ],
-    "server": [
-      "dev.architectury.init.fabric.ArchitecturyServer::init"
-    ],
-    "client": [
-      "dev.architectury.init.fabric.ArchitecturyClient::init"
-    ],
-    "modmenu": [
-      "dev.architectury.compat.fabric.ModMenuCompatibility"
-    ]
-  },
+  "mixins": [],
+  "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "minecraft": "~1.20.6-",
-    "fabricloader": ">=0.15.11",
-    "fabric-api": ">=0.99.0"
+    "architectury_networking": "${version}",
+    "architectury_registry": "${version}",
+    "architectury_fluids": "${version}",
+    "architectury_extensions": "${version}",
+    "architectury_events": "${version}",
+    "architectury_hooks": "${version}",
+    "architectury_core": "${version}"
   },
-  "breaks": {
-    "optifabric": "<1.13.0"
-  },
-  "custom": {
-    "modmenu": {
-      "badges": ["library"]
-    }
-  }
+  "breaks": {}
 }

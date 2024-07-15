@@ -24,6 +24,7 @@ public class MetadataGeneration {
         String description = module.description().get();
         if (loader.equals("fabric")) {
             FabricModJsonBuilder fabricModJsonBuilder = new FabricModJsonBuilder();
+            fabricModJsonBuilder.schemaVersion(1);
             fabricModJsonBuilder.id("architectury_" + module.name());
             fabricModJsonBuilder.version("${version}");
             fabricModJsonBuilder.name("Architectury (" + module.name() + ")");

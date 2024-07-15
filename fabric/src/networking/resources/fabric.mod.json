@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "architectury_core",
+  "id": "architectury_networking",
   "version": "${version}",
-  "name": "Architectury (core)",
+  "name": "Architectury (networking)",
   "description": "",
   "authors": [
     "shedaniel"
@@ -18,7 +18,8 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "architectury_annotations": "${version}"
+    "architectury_events": "${version}",
+    "architectury_core": "${version}"
   },
   "breaks": {}
 }

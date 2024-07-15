@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "architectury_core",
+  "id": "architectury_legacyExtensions",
   "version": "${version}",
-  "name": "Architectury (core)",
+  "name": "Architectury (legacyExtensions)",
   "description": "",
   "authors": [
     "shedaniel"
@@ -18,7 +18,10 @@
   "entrypoints": {},
   "icon": "icon.png",
   "depends": {
-    "architectury_annotations": "${version}"
+    "architectury_registry": "${version}",
+    "architectury_fluids": "${version}",
+    "architectury_extensions": "${version}",
+    "architectury_hooks": "${version}"
   },
   "breaks": {}
 }

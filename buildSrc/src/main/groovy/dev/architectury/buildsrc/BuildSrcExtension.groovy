@@ -166,6 +166,7 @@ public abstract class BuildSrcExtension {
             def generateModuleMetadata = project.task("generate" + module.key.capitalize() + "Metadata") {
                 doLast {
                     def generation = new MetadataGeneration(project, "fabric")
+                    project.file("src/" + module.key + "/resources/").mkdirs()
                     project.file("src/" + module.key + "/resources/fabric.mod.json").text = generation.generateMetadata(module.value)
                 }
             }
