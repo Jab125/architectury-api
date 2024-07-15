@@ -36,6 +36,9 @@ dependencies {
         implementation project(":common").sourceSets.maybeCreate(it.key).output
     }
 
+    // Depend on base mod too.
+    implementation project(":common").sourceSets.main.output
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
 }

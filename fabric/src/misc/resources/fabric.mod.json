@@ -15,8 +15,7 @@
   "license": "LGPL-3",
   "environment": "*",
   "mixins": [
-    "architectury.mixins.json",
-    "architectury-common.mixins.json"
+    "architectury.mixins.json"
   ],
   "entrypoints": {},
   "icon": "icon.png",
