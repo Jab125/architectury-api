@@ -17,7 +17,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-package dev.architectury.impl;
+package dev.architectury.registry.impl;
 
 import com.mojang.datafixers.util.Either;
 import dev.architectury.registry.registries.RegistrySupplier;

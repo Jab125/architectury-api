@@ -22,6 +22,8 @@ buildSrc {
     module("misc").dependsOn("events")
     module("misc").dependsOn("hooks")
     module("misc").dependsOn("extensions")
+    module("misc").dependsOn("registry")
+    module("registry").dependsOn("core")
     module("events").dependsOn("core")
     module("events").dependsOn("hooks")
     module("hooks").dependsOn("core")
